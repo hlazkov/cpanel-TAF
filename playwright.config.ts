@@ -1,6 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
-import { config } from 'dotenv';
-config();
+import { defineConfig, devices } from '@playwright/test'
+import { config } from 'dotenv'
+config()
 
 const supportedBrowsers = {
   chrome: {
@@ -19,10 +19,10 @@ const supportedBrowsers = {
     name: 'webkit',
     use: { ...devices['Desktop Safari'] },
   },
-};
+}
 
 module.exports = defineConfig({
-  testDir: '.',
+  testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: Number.parseInt(process.env.RETRIES) || 0,
@@ -30,7 +30,7 @@ module.exports = defineConfig({
   projects: [supportedBrowsers[process.env.BROWSER || 'chrome']],
   reporter: [['html', { outputFolder: 'results/playwright-report' }]],
   use: {
-    baseURL: process.env.BASE_URL || "https://store.cpanel.net/",
+    baseURL: process.env.BASE_URL || 'https://store.cpanel.net/',
     headless: process.env.CI ? true : process.env.HEADLESS === 'true',
     trace: process.env.TRACE_ON_FAIL_ONLY === 'true' ? 'on-all-retries' : 'on',
     screenshot: {
@@ -42,4 +42,4 @@ module.exports = defineConfig({
     },
     // testIdAttribute: 'data-test-id',
   },
-});
+})

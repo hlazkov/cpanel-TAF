@@ -29,6 +29,7 @@ module.exports = defineConfig({
   workers: Number.parseInt(process.env.WORKERS) || 1,
   projects: [supportedBrowsers[process.env.BROWSER || 'chrome']],
   reporter: [['html', { outputFolder: 'results/playwright-report' }]],
+  testMatch: '**/*.spec.ts',
   use: {
     baseURL: process.env.BASE_URL || 'https://store.cpanel.net/',
     headless: process.env.CI ? true : process.env.HEADLESS === 'true',
